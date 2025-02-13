@@ -1,11 +1,4 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
-}
+
 
 .title {
   line-height: 1.15;
@@ -19,4 +12,50 @@
 
 .title a:hover, .title a:focus, .title a:active {
   text-decoration: underline;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+ 
+  
+}
+.oiseauAccueil{
+
+  rotate: 180deg;
+  width : 400px;
+height : 400px;
+}
+.fontAccueil{
+ 
+  
+}.partiedroite{
+  width: 55%;
+ 
+}
+.partiegauche{
+  background-image: url("../public/font3.png");
+ height: 100vh;
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oiseauLogoAccueil{
+  rotate: 180deg;
+  width : 100px;
+  height : 100px;
+  
+}
+.bouttonSign{
+  margin-left: 50px;
+}
+.signUp{
+  position: absolute;
+  top :4000px;
+  left : 200px;
+  width : 100px;
+  height : 100px;
+  background-color: beige;
 }
