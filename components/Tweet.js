@@ -11,9 +11,9 @@ function Tweet(props) {
   let heur =Math.floor((date)/60000/60);
   date=date-heur*60000*60;
   let minute=Math.floor((date)/60000/60);
-  date=date-minute*60000*60;
-  let seconde=Math.floor((date)/60000);
   date=date-minute*60000;
+  let seconde=Math.floor((date)/60000);
+  
   let mydelay= jour+ " j ,"+heur+" h ,"+minute+" m ,"+seconde+" sec"; 
   console.log(mydelay);
 
