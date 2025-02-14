@@ -1,16 +1,23 @@
 import styles from "../styles/HomeComponent.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import {logout} from "../reducers/user";
 import Tweet from "./Tweet";
 import TextInput from "./TextArea";
 import { user } from "../reducers/user";
+import { useRouter} from 'next/router'
 
 function Homecomponent() {
+  const router = useRouter();
   const [tweetsPosts, setTweetsPosts] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.value);
 
+  const handleLogout = () => {
+    console.log("logout")
+    router.push('/');
+    dispatch(logout());
+  };
 
 
   useEffect(() => {
@@ -33,7 +40,7 @@ function Homecomponent() {
           <div>
             <img src="avatar.png" className={styles.avatar}></img>
           </div>
-          <button className={styles.logoutbtn}>Logout</button>
+          <button className={styles.logoutbtn} onClick={() => handleLogout()}>Logout</button>
         </div>
       </div>
       <div className={styles.middlecol}>
@@ -41,8 +48,9 @@ function Homecomponent() {
           <h1 className={styles.hometitle}>Home</h1>
           <TextInput></TextInput>
         </div>
-
+        <div className={styles.tweetscontainer}>
         {tweets}
+        </div>
       </div>
       <div className={styles.rightcol}>
         <h2 className={styles.trendstitle}>Trends</h2>

@@ -1,33 +1,32 @@
 import styles from "../styles/Home.module.css";
-import  React, { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { user } from "../reducers/user";
-import {login} from "../reducers/user";
-import { useRouter} from 'next/router'
-import { Button, ConfigProvider, Modal, Space } from 'antd';
-import { createStyles, useTheme } from 'antd-style';
+import { login } from "../reducers/user";
+import { useRouter } from "next/router";
+import { Button, ConfigProvider, Modal, Space } from "antd";
+import { createStyles, useTheme } from "antd-style";
 
 const useStyle = createStyles(({ tokstyle }) => ({
-  'my-modal-body': {
+  "my-modal-body": {
     background: tokstyle.blue1,
     padding: tokstyle.paddingSM,
   },
-  'my-modal-mask': {
+  "my-modal-mask": {
     boxShadow: `inset 0 0 15px #fff`,
   },
-  'my-modal-header': {
+  "my-modal-header": {
     borderBottom: `1px dotted ${tokstyle.colorPrimary}`,
   },
-  'my-modal-footer': {
+  "my-modal-footer": {
     color: tokstyle.colorPrimary,
   },
-  'my-modal-content': {
-    border: '1px solid #333',
+  "my-modal-content": {
+    border: "1px solid #333",
   },
 }));
 
 function Login() {
-
   const dispatch = useDispatch();
   const router = useRouter();
   //const user = useSelector((state) => state.user.value);
@@ -36,24 +35,23 @@ function Login() {
   const [signUpFirstname, setSignUpFirstname] = useState("");
   const [password, setSignUpPassword] = useState("");
 
- 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   let modaltype;
-    const showModal = (argSign) => {
-      setIsModalOpen(true);
-    modaltype=argSign;
+  const showModal = (argSign) => {
+    setIsModalOpen(true);
+    modaltype = argSign;
     console.log(modaltype);
-    };
-  
-    const handleOk = () => {
-      setIsModalOpen(false);
-      if(modaltype="sign in")handleRegister();
-      if(modaltype="sign up")handleconnection();
-    };
-    
-    const handleCancel = () => {
-      setIsModalOpen(false);
-    };
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    if ((modaltype = "sign in")) handleRegister();
+    if ((modaltype = "sign up")) handleconnection();
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const handleRegister = () => {
     fetch("http://localhost:3000/users/signup", {
@@ -70,7 +68,6 @@ function Login() {
         console.log("data reponse");
         console.log(data);
         if (data.result) {
-         
           dispatch(
             login({
               username: signUpUsername,
@@ -79,10 +76,16 @@ function Login() {
             })
           );
           console.log("nouvelle connection ok");
-          router.push('/home');
-        }else console.log("erreur nouvelle connection"+ signUpUsername +" " +signUpFirstname +" "+data.token);
-
-     
+          router.push("/home");
+        } else
+          console.log(
+            "erreur nouvelle connection" +
+              signUpUsername +
+              " " +
+              signUpFirstname +
+              " " +
+              data.token
+          );
       });
   };
   const handleconnection = () => {
@@ -106,20 +109,31 @@ function Login() {
               firstname: signUpFirstname,
               token: data.token,
             })
-          
           );
           console.log("connection ok");
-         router.push('/home');
-        }else console.log("erreur connection "+ signUpUsername +" " +signUpFirstname +" "+data.token);
+          router.push("/home");
+        } else
+          console.log(
+            "erreur connection " +
+              signUpUsername +
+              " " +
+              signUpFirstname +
+              " " +
+              data.token
+          );
       });
   };
-
 
   return (
     <div>
       <main className={styles.main}>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-      <input
+        <Modal
+          title="Basic Modal"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <input
             type="text"
             placeholder="Firstname"
             id="signUpFirstname"
@@ -140,8 +154,7 @@ function Login() {
             onChange={(e) => setSignUpPassword(e.target.value)}
             value={password}
           />
-
-      </Modal>
+        </Modal>
         <div className={styles.partiegauche}>
           {" "}
           <img
@@ -156,20 +169,23 @@ function Login() {
             alt="oiseau1.png"
             className={styles.oiseauLogoAccueil}
           ></img>
-          <h1 className={styles.titleh1}> See What's </h1>
-          <h1 className={styles.titleh1}> happening </h1>
+          <h1 className={styles.titleh1}>
+            {" "}
+            See what's<br></br> happening
+          </h1>
+
           <h2 className={styles.titleh2}> Join Hackatweet today. </h2>
-          
+
           <button
-            onClick={() => showModal("sign up")}// handleRegister()}
+            onClick={() => showModal("sign up")} // handleRegister()}
             className={styles.bouttonSign}
           >
             Sign up
           </button>
-          <h3 className={styles.titleh3} >Already have an account?</h3>
+          <h3 className={styles.titleh3}>Already have an account?</h3>
           <button
-            onClick={() =>showModal("sign in")}
-            className={styles.bouttonSign}
+            onClick={() => showModal("sign in")}
+            className={styles.secondarybtn}
           >
             {" "}
             Sign in

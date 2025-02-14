@@ -2,7 +2,7 @@
   background-color: #151f2b;
   display: grid;
   grid-template-columns: 2fr 4fr 2fr;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .logo {
@@ -55,9 +55,13 @@
   border-right: solid 0.1em #566270;
 }
 
+.tweetscontainer {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .middlecolheader {
   padding: 8px 20px 20px 20px;
-
 }
 .rightcol {
   padding: 20px 30px 20px 20px;
