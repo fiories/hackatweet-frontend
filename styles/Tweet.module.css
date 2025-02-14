@@ -1,0 +1,40 @@
+.container {
+  border-top: solid 0.1px #566270;
+  padding: 20px;
+}
+
+.tweetheader {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tweetheader p {
+  margin: 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+.firstname {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.username,
+.postTime {
+  font-size: 14px;
+  font-weight: light;
+  color: #566270;
+}
+
+.message {
+  font-size: 15px;
+  margin: 12px 0;
+}
+
+.heart {
+  width: 12px;
+  height: 12px;
+}
