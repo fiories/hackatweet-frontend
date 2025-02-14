@@ -25,7 +25,7 @@ function Tweet(props) {
         <img src="avatar.png" className={styles.avatar}></img>
         <p className={styles.firstname}>{props.user.firstname}</p>
         <p className={styles.username}>@{props.user.username} ·</p>
-        <p className={styles.postTime}>{props.postTime}</p>
+        <p className={styles.postTime}>{mydelay}</p>
       </div>
       <div>
         <p className={styles.message}>{props.message}</p>
