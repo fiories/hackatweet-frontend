@@ -59,3 +59,34 @@ height : 400px;
   height : 100px;
   background-color: beige;
 }
+.bouttonSign{
+
+  color : white;
+  background-color: black;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 5px 32px;
+  border-color: white;
+
+}
+.titleh1,.titleh2,.titleh3{
+  font-family:Verdana;
+}
+.titleh1{
+  font-size: 80px;
+  padding: 0px;
+  margin: 0px;
+  margin-left: 30px;
+}
+
+.titleh2{
+  font-size: 50px;
+  padding: 0px;
+  margin: 30px;
+}
+
+.titleh3{
+  font-size: 14px;
+  padding: 0px;
+  margin: 30px;
+}

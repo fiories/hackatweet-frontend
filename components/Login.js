@@ -1,11 +1,33 @@
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import  React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { user } from "../reducers/user";
 import {login} from "../reducers/user";
 import { useRouter} from 'next/router'
+import { Button, ConfigProvider, Modal, Space } from 'antd';
+import { createStyles, useTheme } from 'antd-style';
+
+const useStyle = createStyles(({ tokstyle }) => ({
+  'my-modal-body': {
+    background: tokstyle.blue1,
+    padding: tokstyle.paddingSM,
+  },
+  'my-modal-mask': {
+    boxShadow: `inset 0 0 15px #fff`,
+  },
+  'my-modal-header': {
+    borderBottom: `1px dotted ${tokstyle.colorPrimary}`,
+  },
+  'my-modal-footer': {
+    color: tokstyle.colorPrimary,
+  },
+  'my-modal-content': {
+    border: '1px solid #333',
+  },
+}));
 
 function Login() {
+
   const dispatch = useDispatch();
   const router = useRouter();
   //const user = useSelector((state) => state.user.value);
@@ -14,10 +36,24 @@ function Login() {
   const [signUpFirstname, setSignUpFirstname] = useState("");
   const [password, setSignUpPassword] = useState("");
 
-  const [token, settoken] = useState("");
-
-  let BafficheSignup = false;
-  let BafficheSignin = false;
+ 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  let modaltype;
+    const showModal = (argSign) => {
+      setIsModalOpen(true);
+    modaltype=argSign;
+    console.log(modaltype);
+    };
+  
+    const handleOk = () => {
+      setIsModalOpen(false);
+      if(modaltype="sign in")handleRegister();
+      if(modaltype="sign up")handleconnection();
+    };
+    
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
 
   const handleRegister = () => {
     fetch("http://localhost:3000/users/signup", {
@@ -82,23 +118,8 @@ function Login() {
   return (
     <div>
       <main className={styles.main}>
-        <div className={styles.partiegauche}>
-          {" "}
-          <img
-            src="oiseau2.png"
-            alt="oiseau1.png"
-            className={styles.oiseauAccueil}
-          ></img>
-        </div>
-        <div className={styles.partiedroite}>
-          <img
-            src="oiseau2.png"
-            alt="oiseau1.png"
-            className={styles.oiseauLogoAccueil}
-          ></img>
-          <h1 className={styles.title}> See What happening </h1>
-          <h2 className={styles.title}> Join Hackatweet today. </h2>
-          <input
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <input
             type="text"
             placeholder="Firstname"
             id="signUpFirstname"
@@ -120,15 +141,34 @@ function Login() {
             value={password}
           />
 
+      </Modal>
+        <div className={styles.partiegauche}>
+          {" "}
+          <img
+            src="oiseau2.png"
+            alt="oiseau1.png"
+            className={styles.oiseauAccueil}
+          ></img>
+        </div>
+        <div className={styles.partiedroite}>
+          <img
+            src="oiseau2.png"
+            alt="oiseau1.png"
+            className={styles.oiseauLogoAccueil}
+          ></img>
+          <h1 className={styles.titleh1}> See What's </h1>
+          <h1 className={styles.titleh1}> happening </h1>
+          <h2 className={styles.titleh2}> Join Hackatweet today. </h2>
+          
           <button
-            onClick={() => handleRegister()}
+            onClick={() => showModal("sign up")}// handleRegister()}
             className={styles.bouttonSign}
           >
             Sign up
           </button>
-          <h3>Already have an account?</h3>
+          <h3 className={styles.titleh3} >Already have an account?</h3>
           <button
-            onClick={() => handleconnection()}
+            onClick={() =>showModal("sign in")}
             className={styles.bouttonSign}
           >
             {" "}
